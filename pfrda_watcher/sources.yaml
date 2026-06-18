@@ -4,10 +4,10 @@
 #
 # Two modes per source:
 #   - "teaser": the homepage What's New widget (5 items, fast, low-history)
-#   - "archive": the /active full listing pages (complete history, paginated)
+#   - "archive": full listing pages (complete history, paginated via ?start=N)
 #
-# Selectors below are CONFIRMED for the teaser widget (from supplied outerHTML).
-# The archive selectors are marked PLACEHOLDER — fill in once /active HTML is supplied.
+# Pagination note: PFRDA uses Liferay's `start` param (1-based page index).
+# Page 1 is fetched as the bare URL (no param); page 2+ appends ?start=2, etc.
 
 defaults:
   base_url: "https://www.pfrda.org.in"
@@ -16,49 +16,61 @@ defaults:
     user_agent: "Mozilla/5.0 (compatible; trilegal-pfrda-watcher/1.0)"
     retry: 3
     backoff_seconds: 4
-  date_format: "%d-%m-%Y"        # DD-MM-YYYY as seen in .whats-new-item-date
+  date_format: "%d-%m-%Y"        # DD-MM-YYYY as seen in .meta-item Issue Date
 
 sources:
 
-  # ---- TEASER (confirmed selectors) ----------------------------------------
+  # ---- TEASER (homepage What's New widget) ----------------------------------
   - id: whats_new_circulars
     doc_type: circular
     mode: teaser
     enabled: true
-    list_url: "https://www.pfrda.org.in/"   # widget defaults to Circulars tab
+    list_url: "https://www.pfrda.org.in/"
     selectors:
       row: "div.list_object_view"
-      link: "a"                      # href -> /w/<slug> detail page
+      link: "a"
       title: "div.whats-new-item-title p"
       date: "div.whats-new-item-date"
 
-  # ---- ARCHIVE pages (PLACEHOLDER selectors — confirm from /active HTML) ----
+  # ---- ARCHIVE pages --------------------------------------------------------
   - id: circulars_archive
     doc_type: circular
     mode: archive
-    enabled: false                   # flip to true after selectors confirmed
-    list_url: "https://www.pfrda.org.in/web/pfrda/regulatory-framework/circular/active"
+    enabled: true
+    list_url: "https://www.pfrda.org.in/regulatory-framework/circulars"
     selectors:
-      row: "TODO"
-      link: "TODO"
-      title: "TODO"
-      date: "TODO"
+      row: "div.basic-card"
+      link: "a.basic-link"
+      title: "h2.basic-title"
+      date: "div.meta-item:last-child"   # "Issue Date: DD-MM-YYYY" — label stripped by scraper
     pagination:
-      type: "TODO"                   # query_param | next_link | load_more | none
-      param: "TODO"
+      type: query_param
+      param: start
 
   - id: notifications_archive
     doc_type: notification
     mode: archive
-    enabled: false
-    list_url: "https://www.pfrda.org.in/web/pfrda/regulatory-framework/notification/active"  # CONFIRM
-    selectors: { row: "TODO", link: "TODO", title: "TODO", date: "TODO" }
-    pagination: { type: "TODO", param: "TODO" }
+    enabled: true
+    list_url: "https://www.pfrda.org.in/regulatory-framework/notifications"
+    selectors:
+      row: "div.basic-card"
+      link: "a.basic-link"
+      title: "h2.basic-title"
+      date: "div.meta-item:last-child"
+    pagination:
+      type: query_param
+      param: start
 
   - id: regulations_archive
     doc_type: regulation
     mode: archive
-    enabled: false
-    list_url: "https://www.pfrda.org.in/web/pfrda/regulatory-framework/regulation/active"   # CONFIRM
-    selectors: { row: "TODO", link: "TODO", title: "TODO", date: "TODO" }
-    pagination: { type: "TODO", param: "TODO" }
+    enabled: true
+    list_url: "https://www.pfrda.org.in/regulatory-framework/regulations"
+    selectors:
+      row: "div.basic-card"
+      link: "a.basic-link"
+      title: "h2.basic-title"
+      date: "div.meta-item:last-child"
+    pagination:
+      type: query_param
+      param: start
