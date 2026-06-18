@@ -1,0 +1,64 @@
+# PFRDA Watcher — declarative source rulebook
+# One combined feed; each item carries a `doc_type` tag (notification|circular|regulation)
+# so the single channel can still be filtered downstream.
+#
+# Two modes per source:
+#   - "teaser": the homepage What's New widget (5 items, fast, low-history)
+#   - "archive": the /active full listing pages (complete history, paginated)
+#
+# Selectors below are CONFIRMED for the teaser widget (from supplied outerHTML).
+# The archive selectors are marked PLACEHOLDER — fill in once /active HTML is supplied.
+
+defaults:
+  base_url: "https://www.pfrda.org.in"
+  request:
+    timeout_seconds: 30
+    user_agent: "Mozilla/5.0 (compatible; trilegal-pfrda-watcher/1.0)"
+    retry: 3
+    backoff_seconds: 4
+  date_format: "%d-%m-%Y"        # DD-MM-YYYY as seen in .whats-new-item-date
+
+sources:
+
+  # ---- TEASER (confirmed selectors) ----------------------------------------
+  - id: whats_new_circulars
+    doc_type: circular
+    mode: teaser
+    enabled: true
+    list_url: "https://www.pfrda.org.in/"   # widget defaults to Circulars tab
+    selectors:
+      row: "div.list_object_view"
+      link: "a"                      # href -> /w/<slug> detail page
+      title: "div.whats-new-item-title p"
+      date: "div.whats-new-item-date"
+
+  # ---- ARCHIVE pages (PLACEHOLDER selectors — confirm from /active HTML) ----
+  - id: circulars_archive
+    doc_type: circular
+    mode: archive
+    enabled: false                   # flip to true after selectors confirmed
+    list_url: "https://www.pfrda.org.in/web/pfrda/regulatory-framework/circular/active"
+    selectors:
+      row: "TODO"
+      link: "TODO"
+      title: "TODO"
+      date: "TODO"
+    pagination:
+      type: "TODO"                   # query_param | next_link | load_more | none
+      param: "TODO"
+
+  - id: notifications_archive
+    doc_type: notification
+    mode: archive
+    enabled: false
+    list_url: "https://www.pfrda.org.in/web/pfrda/regulatory-framework/notification/active"  # CONFIRM
+    selectors: { row: "TODO", link: "TODO", title: "TODO", date: "TODO" }
+    pagination: { type: "TODO", param: "TODO" }
+
+  - id: regulations_archive
+    doc_type: regulation
+    mode: archive
+    enabled: false
+    list_url: "https://www.pfrda.org.in/web/pfrda/regulatory-framework/regulation/active"   # CONFIRM
+    selectors: { row: "TODO", link: "TODO", title: "TODO", date: "TODO" }
+    pagination: { type: "TODO", param: "TODO" }
