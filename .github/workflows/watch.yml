@@ -1,0 +1,22 @@
+name: pfrda-watcher
+on:
+  schedule:
+    - cron: "30 2 * * *"   # 08:00 IST daily
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python -m pfrda_watcher.cli run --config pfrda_watcher/sources.yaml --db state/pfrda.db --state state/seen.json --out output
+      - run: |
+          git config user.name  "pfrda-watcher-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state/seen.json output/
+          git commit -m "pfrda: update $(date -u +%FT%TZ)" || echo "no changes"
+          git push
