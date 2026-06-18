@@ -23,7 +23,7 @@ import logging
 import time
 from datetime import datetime, timezone
 from typing import Generator, Iterator
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlencode, urljoin, urlparse, urlunparse, parse_qs
 
 import requests
 import yaml
@@ -130,7 +130,7 @@ def _scrape_teaser(source: dict, session: requests.Session) -> Generator[Mention
 
         title = title_el.get_text(strip=True)
         href = link_el.get("href", "")
-        abs_url = urljoin(base_url, href) if href else ""
+        abs_url = _clean_url(urljoin(base_url, href)) if href else ""
         date_raw = date_el.get_text(strip=True) if date_el else ""
 
         if not title or not abs_url:
@@ -176,7 +176,7 @@ def _scrape_archive(source: dict, session: requests.Session) -> Generator[Mentio
 
             title = title_el.get_text(strip=True)
             href = link_el.get("href", "")
-            abs_url = urljoin(base_url, href) if href else ""
+            abs_url = _clean_url(urljoin(base_url, href)) if href else ""
             date_raw = date_el.get_text(strip=True) if date_el else ""
             # Strip "Issue Date:" / "Ref:" label prefixes, e.g. "Issue Date: 17-06-2026"
             date_raw = date_raw.split(":", 1)[-1].strip()
@@ -277,6 +277,23 @@ def _now() -> str:
 def _origin(url: str) -> str:
     parsed = urlparse(url)
     return f"{parsed.scheme}://{parsed.netloc}"
+
+
+_LIFERAY_NOISE = {"p_l_back_url", "p_l_back_url_title"}
+
+
+def _clean_url(url: str) -> str:
+    """Strip Liferay back-navigation params that vary by referring page.
+
+    Without this, the same document scraped from two different listing pages
+    produces two different URLs (and therefore two different stable IDs).
+    """
+    parsed = urlparse(url)
+    params = {
+        k: v for k, v in parse_qs(parsed.query).items()
+        if k not in _LIFERAY_NOISE
+    }
+    return urlunparse(parsed._replace(query=urlencode(params, doseq=True)))
 
 
 def _has_todo_selectors(source: dict) -> bool:
