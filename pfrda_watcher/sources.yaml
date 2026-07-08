@@ -6,8 +6,18 @@
 #   - "teaser": the homepage What's New widget (5 items, fast, low-history)
 #   - "archive": full listing pages (complete history, paginated via ?start=N)
 #
-# Pagination note: PFRDA uses Liferay's `start` param (1-based page index).
-# Page 1 is fetched as the bare URL (no param); page 2+ appends ?start=2, etc.
+# Pagination note (updated July 2026): PFRDA runs Liferay search containers.
+# `delta` is the page size and `start` is the 1-based page index. We bake an
+# explicit `delta=60` into every archive list_url so the crawl no longer
+# depends on the site's default page size (which appears to have changed and
+# halved effective coverage on the 2026-07-07 run). _paginate appends
+# `&start=N` correctly to URLs that already carry a query string.
+#
+# Site restructure (June/July 2026): Circulars are now split into
+# Active (/circulars/active-circulars) and Archived (/circulars/inoperative).
+# The old /regulatory-framework/circulars URL serves only the Active subset.
+# Both are sourced below so superseded circulars keep getting tracked.
+# Notifications and Regulations remain single listings at their old URLs.
 
 defaults:
   base_url: "https://www.pfrda.org.in"
@@ -21,6 +31,11 @@ defaults:
 sources:
 
   # ---- TEASER (homepage What's New widget) ----------------------------------
+  # NOTE: as of July 2026 this widget may be client-side rendered — the
+  # server HTML fetched without JS showed the heading but no items, and the
+  # teaser stopped surfacing items newer than 22-06-2026. Verify with the
+  # raw-HTML diagnostic before trusting this source; the archive sources
+  # below are the reliable channel either way.
   - id: whats_new_circulars
     doc_type: circular
     mode: teaser
@@ -33,11 +48,15 @@ sources:
       date: "div.whats-new-item-date"
 
   # ---- ARCHIVE pages --------------------------------------------------------
+
+  # Active circulars (new URL — old /regulatory-framework/circulars now
+  # serves only this subset). Keeping the original source id so existing
+  # documents' source_ids stay continuous.
   - id: circulars_archive
     doc_type: circular
     mode: archive
     enabled: true
-    list_url: "https://www.pfrda.org.in/regulatory-framework/circulars"
+    list_url: "https://www.pfrda.org.in/regulatory-framework/circulars/active-circulars?delta=60"
     selectors:
       row: "div.basic-card"
       link: "a.basic-link"
@@ -47,11 +66,28 @@ sources:
       type: query_param
       param: start
 
+  # Superseded / withdrawn circulars — new listing introduced in the
+  # June 2026 site restructure. Without this source, anything moved to
+  # (or issued directly into) the archived bucket is invisible.
+  - id: circulars_inoperative
+    doc_type: circular
+    mode: archive
+    enabled: true
+    list_url: "https://www.pfrda.org.in/regulatory-framework/circulars/inoperative?delta=60"
+    selectors:
+      row: "div.basic-card"
+      link: "a.basic-link"
+      title: "h2.basic-title"
+      date: "div.meta-item:last-child"
+    pagination:
+      type: query_param
+      param: start
+
   - id: notifications_archive
     doc_type: notification
     mode: archive
     enabled: true
-    list_url: "https://www.pfrda.org.in/regulatory-framework/notifications"
+    list_url: "https://www.pfrda.org.in/regulatory-framework/notifications?delta=60"
     selectors:
       row: "div.basic-card"
       link: "a.basic-link"
@@ -65,7 +101,7 @@ sources:
     doc_type: regulation
     mode: archive
     enabled: true
-    list_url: "https://www.pfrda.org.in/regulatory-framework/regulations"
+    list_url: "https://www.pfrda.org.in/regulatory-framework/regulations?delta=60"
     selectors:
       row: "div.basic-card"
       link: "a.basic-link"
