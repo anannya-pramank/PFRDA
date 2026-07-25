@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "regulation:pension-fund-regulatory-and-development-authority-exits-and-withdrawals-under-the-national-pension-system-amendment-regulations-2026",
+    "doc_type": "regulation",
+    "title": "Pension Fund Regulatory And Development Authority (Exits and Withdrawals under the National Pension System) (Amendment) Regulations, 2026",
+    "url": "https://www.pfrda.org.in/w/pension-fund-regulatory-and-development-authority-exits-and-withdrawals-under-the-national-pension-system-amendment-regulations-2026",
+    "date": "2026-07-20",
+    "date_raw": "20-07-2026",
+    "first_seen": "2026-07-25T05:29:14.134958+00:00",
+    "last_seen": "2026-07-25T05:29:14.134958+00:00",
+    "source_ids": [
+      "regulations_archive"
+    ]
+  },
+  {
+    "id": "regulation:pension-fund-regulatory-and-development-authority-regulatory-sandbox-regulations-2026",
+    "doc_type": "regulation",
+    "title": "Pension Fund Regulatory And Development Authority (Regulatory Sandbox) Regulations 2026",
+    "url": "https://www.pfrda.org.in/w/pension-fund-regulatory-and-development-authority-regulatory-sandbox-regulations-2026",
+    "date": "2026-07-20",
+    "date_raw": "20-07-2026",
+    "first_seen": "2026-07-25T05:29:14.206450+00:00",
+    "last_seen": "2026-07-25T05:29:14.206450+00:00",
+    "source_ids": [
+      "regulations_archive"
+    ]
+  }
+]
