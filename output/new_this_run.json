@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "circular:permitting-the-point-of-presence-pop-for-engagement-of-other-persons-as-pension-agents",
+    "doc_type": "circular",
+    "title": "Circular - Permitting the Point of Presence (PoP) for engagement of \u2018other persons\u2019 as Pension Agents for distribution of Pension Schemes under Regulation 2(1)(j)(iv) of PFRDA (Point of Presence) Regulations, 2018",
+    "url": "https://www.pfrda.org.in/w/permitting-the-point-of-presence-pop-for-engagement-of-other-persons-as-pension-agents",
+    "date": "2026-07-30",
+    "date_raw": "30-07-2026",
+    "first_seen": "2026-07-31T05:50:06.892649+00:00",
+    "last_seen": "2026-07-31T05:50:06.892649+00:00",
+    "source_ids": [
+      "whats_new_circulars"
+    ]
+  },
+  {
+    "id": "regulation:pension-fund-regulatory-and-development-authority-exits-and-withdrawals-under-the-national-pension-system-regulations-2015-last-amended-on-20th-july-2026-.",
+    "doc_type": "regulation",
+    "title": "Pension Fund Regulatory and Development Authority (Exits and Withdrawals under the National Pension System) Regulations, 2015 [Last amended on 20th July 2026]",
+    "url": "https://www.pfrda.org.in/w/pension-fund-regulatory-and-development-authority-exits-and-withdrawals-under-the-national-pension-system-regulations-2015-last-amended-on-20th-july-2026-.",
+    "date": "2026-07-20",
+    "date_raw": "20-07-2026",
+    "first_seen": "2026-07-31T05:50:29.360635+00:00",
+    "last_seen": "2026-07-31T05:50:29.360635+00:00",
+    "source_ids": [
+      "regulations_archive"
+    ]
+  }
+]
