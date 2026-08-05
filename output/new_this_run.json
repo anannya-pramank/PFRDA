@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "circular:same-day-investment-of-nps-contributions-received-by-trustee-bank-up-to-1-30-pm",
+    "doc_type": "circular",
+    "title": "Same-Day Investment of NPS Contributions Received by Trustee Bank up to 1:30 PM",
+    "url": "https://www.pfrda.org.in/w/same-day-investment-of-nps-contributions-received-by-trustee-bank-up-to-1-30-pm",
+    "date": "2026-08-04",
+    "date_raw": "04-08-2026",
+    "first_seen": "2026-08-05T05:30:36.686371+00:00",
+    "last_seen": "2026-08-05T05:30:36.686371+00:00",
+    "source_ids": [
+      "whats_new_circulars"
+    ]
+  },
+  {
+    "id": "circular:same-day-investment-of-nps-contributions-received-by-trustee-bank-up-to-1-30-pm-copy-",
+    "doc_type": "circular",
+    "title": "Same-Day Investment of NPS Contributions Received by Trustee Bank up to 1:30 PM (Copy)",
+    "url": "https://pfrda.org.in/w/same-day-investment-of-nps-contributions-received-by-trustee-bank-up-to-1-30-pm-copy-",
+    "date": "2026-08-04",
+    "date_raw": "04-08-2026",
+    "first_seen": "2026-08-05T05:30:36.694078+00:00",
+    "last_seen": "2026-08-05T05:30:36.694078+00:00",
+    "source_ids": [
+      "whats_new_circulars"
+    ]
+  }
+]
