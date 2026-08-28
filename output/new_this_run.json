@@ -1,1 +1,41 @@
-[]
+[
+  {
+    "id": "circular:operationalising-the-framework-for-classification-and-presentation-of-schemes-under-the-nps",
+    "doc_type": "circular",
+    "title": "Operationalising the framework for classification and presentation of Schemes under the NPS",
+    "url": "https://pfrda.org.in/w/operationalising-the-framework-for-classification-and-presentation-of-schemes-under-the-nps",
+    "date": "2026-08-28",
+    "date_raw": "28-08-2026",
+    "first_seen": "2026-08-28T14:31:28.659137+00:00",
+    "last_seen": "2026-08-28T14:31:28.659137+00:00",
+    "source_ids": [
+      "whats_new_circulars"
+    ]
+  },
+  {
+    "id": "circular:standardised-framework-for-classification-and-presentation-of-schemes-under-the-nps",
+    "doc_type": "circular",
+    "title": "Standardised framework for classification and presentation of Schemes under the NPS",
+    "url": "https://pfrda.org.in/en/w/standardised-framework-for-classification-and-presentation-of-schemes-under-the-nps",
+    "date": "2026-08-28",
+    "date_raw": "28-08-2026",
+    "first_seen": "2026-08-28T14:31:28.677774+00:00",
+    "last_seen": "2026-08-28T14:31:28.677774+00:00",
+    "source_ids": [
+      "whats_new_circulars"
+    ]
+  },
+  {
+    "id": "circular:charge-structure-applicable-to-pops-for-all-schemes-under-nps-and-nps-lite",
+    "doc_type": "circular",
+    "title": "Charge structure applicable to PoPs for All Schemes under NPS and NPS Lite",
+    "url": "https://www.pfrda.org.in/w/charge-structure-applicable-to-pops-for-all-schemes-under-nps-and-nps-lite",
+    "date": "2026-08-28",
+    "date_raw": "28-08-2026",
+    "first_seen": "2026-08-28T14:31:28.681645+00:00",
+    "last_seen": "2026-08-28T14:31:28.681645+00:00",
+    "source_ids": [
+      "whats_new_circulars"
+    ]
+  }
+]
