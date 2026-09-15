@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "circular:advisory-on-mandatory-capture-of-tid-in-the-sender-to-receiver-information-field-while-remitting-nps-contributions-to-the-trustee-bank-reg.",
+    "doc_type": "circular",
+    "title": "Advisory on mandatory capture of TID in the \"Sender to Receiver Information\" field while remitting NPS contributions to the Trustee Bank -reg.",
+    "url": "https://www.pfrda.org.in/w/advisory-on-mandatory-capture-of-tid-in-the-sender-to-receiver-information-field-while-remitting-nps-contributions-to-the-trustee-bank-reg.",
+    "date": "2026-09-14",
+    "date_raw": "14-09-2026",
+    "first_seen": "2026-09-15T07:58:11.222022+00:00",
+    "last_seen": "2026-09-15T07:58:11.222022+00:00",
+    "source_ids": [
+      "whats_new_circulars"
+    ]
+  }
+]
